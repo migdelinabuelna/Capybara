@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Capybara List</h1>
+
+{% for capybara in capybaras %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ capybara.name }}</span>
+      <p>Location: {{ capybara.location }}</p>
+      <p>Description: {{ capybara.personality }}</p>
+      {% if capybara.age > 0 %}
+        <p>Age: {{ capybara.age }}</p>
+      {% else %}
+        <p>Age: Capybara Pup</p>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
