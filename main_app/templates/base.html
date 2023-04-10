@@ -17,8 +17,9 @@
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Home</a></li>
         </ul>
         <ul class="right">
-          <li><a href="/about">About</a></li>
-          <li><a href="/capybaras/">Capybaras In The Wild</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'capybaras_create' %}">Add a Capybara</a></li>
+          <li><a href="{% url 'index' %}">Capybaras In The Wild</a></li>
         </ul>
       </div>
     </nav>

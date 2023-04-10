@@ -5,6 +5,7 @@
 
 {% for capybara in capybaras %}
   <div class="card">
+   <a href="{% url 'detail' capybara.id %}">
     <div class="card-content">
       <span class="card-title">{{ capybara.name }}</span>
       <p>Location: {{ capybara.location }}</p>
@@ -14,11 +15,11 @@
       {% else %}
         <p>Age: Capybara Pup</p>
       {% endif %}
-      <p>Footage:<br>
+      <!-- <p>Footage:<br>
         <iframe
          src="{{ capybara.url }}">
         </iframe>
-      </p>
+      </p> -->
     </div>
   </div>
 {% endfor %}
