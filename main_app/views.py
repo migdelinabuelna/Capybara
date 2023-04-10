@@ -26,14 +26,17 @@ def capybaras_index(request):
 
 # Add the Cat class & list and view function below the imports
 class Capybara:  # Note that parens are optional if not inheriting from another class
-  def __init__(self, name, location, personality, age):
+  def __init__(self, name, location, personality, age, url):
     self.name = name
     self.location = location
     self.personality = personality
     self.age = age
+    self.url = url
+
 
 capybaras = [
-  Capybara('Jim', 'Colombia', 'friends with crocodiles', 9),
-  Capybara('Farhana', 'Brazil', 'Chill Capybara', 2),
-  Capybara('Shay', 'Peru', 'Shy Capybara', 8)
+  Capybara('Jim', 'Colombia', 'friends with crocodiles', 9, "https://youtube.com/embed/FB9xm3ALTCQ?feature=share"),
+  Capybara('Farhana', 'Brazil', 'Chill Kappy', 2, "https://youtube.com/embed/s_VUjFDtahg?feature=share"),
+  Capybara('Shay', 'Peru', 'Coconut Doggy', 8, "https://youtube.com/embed/cqS0d_Utoqk?feature=share"),
 ]
+

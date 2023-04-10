@@ -3,14 +3,26 @@
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    
   }
   
   main {
     flex: 1 0 auto;
+    color: #3d251e;
   }
   
   footer.page-footer {
     padding-top: 0;
     text-align: right;
+    background-color: goldenrod;
   }
   
+  nav {
+    background-color: goldenrod;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
