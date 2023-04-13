@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 #Define the following import
-from .models import Capybara
+from .models import Capybara, Toy
 #Import the FeedingForm 
 from .forms import FeedingForm
 
@@ -31,10 +31,12 @@ def capybaras_index(request):
 def capybaras_detail(request, capybara_id):
     capybara = Capybara.objects.get(id=capybara_id)
     #instantiate FeedingForm to be rendered in the template
+    toys_capybara_doesnt_have = Toy.objects.exclude(id__in = capybara.toys.all().values_list('id'))
     feeding_form = FeedingForm()
     return render(request, 'capybaras/detail.html', { 
         #include the capybara and feeding_form in the context 
-        'capybara': capybara, 'feeding_form': feeding_form
+        'capybara': capybara, 'feeding_form': feeding_form,
+        'toys': toys_capybara_doesnt_have
     })
 
 class CapybaraCreate(CreateView):
@@ -63,3 +65,7 @@ def add_feeding(request, capybara_id):
     new_feeding.save()
   return redirect('detail', capybara_id=capybara_id)
 
+def assoc_toy(request, capybara_id, toy_id):
+  # Note that you can pass a toy's id instead of the whole object
+  Capybara.objects.get(id=capybara_id).toys.add(toy_id)
+  return redirect('detail', capybara_id=capybara_id)

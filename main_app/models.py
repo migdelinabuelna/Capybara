@@ -32,11 +32,11 @@ class Capybara(models.Model):
   # Add the M:M relationship
     toys = models.ManyToManyField(Toy)
 
-    def __str__(self):
-        return self.name 
-
     def get_absolute_url(self):
         return reverse('detail', kwargs={'capybara_id': self.id})
+    
+    def __str__(self):
+        return f"{self.name} is {self.age} years old"
 
 
 # Add new Feeding model below Capymodel
