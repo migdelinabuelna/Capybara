@@ -35,8 +35,8 @@ class Capybara(models.Model):
     def __str__(self):
         return self.name 
 
-def get_absolute_url(self):
-    return reverse('detail', kwargs={'capybara_id': self.id})
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'capybara_id': self.id})
 
 
 # Add new Feeding model below Capymodel
@@ -51,11 +51,11 @@ class Feeding(models.Model):
   )
       
 # Create a capybara_id FK
-capybara = models.ForeignKey(Capybara, on_delete=models.CASCADE)
+  capybara = models.ForeignKey(Capybara, on_delete=models.CASCADE)
 
-class Meta: 
+  class Meta: 
     ordering = ['-date']
 
-def __str__(self):
+  def __str__(self):
     #Nice method for obtaining the friendly value of a Field.choice
     return f"{self.get_meal_display()} on {self.date}"

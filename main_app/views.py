@@ -39,7 +39,7 @@ def capybaras_detail(request, capybara_id):
 
 class CapybaraCreate(CreateView):
     model = Capybara
-    fields = '__all__' #this could also have been written as fields = ['name', 'location', 'personality', 'age']
+    fields = ['name', 'location', 'personality', 'age'] #this could also have been written as fields = ['name', 'location', 'personality', 'age']
     success_url = '/capybaras/'
 
 class CapybaraUpdate(UpdateView):
