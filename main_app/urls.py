@@ -15,5 +15,7 @@ urlpatterns = [
     path('capybaras/create', views.CapybaraCreate.as_view(), name='capybaras_create'),
     path('capybaras/<int:pk>/update/', views.CapybaraUpdate.as_view(), name='capybaras_update'),
     path('capybaras/<int:pk>/delete/', views.CapybaraDelete.as_view(), name='capybaras_delete'),
+    path('capybaras/<int:capybara_id>/add_feeding/', views.add_feeding, name='add_feeding'),
 ]
 
+#<int:capybara_id>reffers to the id of the papybara we are working with

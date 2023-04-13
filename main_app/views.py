@@ -5,11 +5,15 @@
 ##VIEW FUNCTIONS
 # #this is the equivalent of mongoose controller functions
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 #Define the following import
 from .models import Capybara
+#Import the FeedingForm 
+from .forms import FeedingForm
+
+
 
 #Define the home view
 def home(request):
@@ -26,7 +30,12 @@ def capybaras_index(request):
 
 def capybaras_detail(request, capybara_id):
     capybara = Capybara.objects.get(id=capybara_id)
-    return render(request, 'capybaras/detail.html', { 'capybara': capybara })
+    #instantiate FeedingForm to be rendered in the template
+    feeding_form = FeedingForm()
+    return render(request, 'capybaras/detail.html', { 
+        #include the capybara and feeding_form in the context 
+        'capybara': capybara, 'feeding_form': feeding_form
+    })
 
 class CapybaraCreate(CreateView):
     model = Capybara
@@ -42,26 +51,15 @@ class CapybaraDelete(DeleteView):
     model = Capybara
     success_url = '/capybaras/'
 
-
-
-
-
-
-
-
-# Add the Cat class & list and view function below the imports
-# class Capybara:  # Note that parens are optional if not inheriting from another class
-#   def __init__(self, name, location, personality, age, url):
-#     self.name = name
-#     self.location = location
-#     self.personality = personality
-#     self.age = age
-#     self.url = url
-
-
-# capybaras = [
-#   Capybara('Jim', 'Colombia', 'friends with crocodiles', 9, "https://youtube.com/embed/FB9xm3ALTCQ?feature=share"),
-#   Capybara('Farhana', 'Brazil', 'Chill Kappy', 2, "https://youtube.com/embed/s_VUjFDtahg?feature=share"),
-#   Capybara('Shay', 'Peru', 'Coconut Doggy', 8, "https://youtube.com/embed/cqS0d_Utoqk?feature=share"),
-# ]
+def add_feeding(request, capybara_id):
+ # create a ModelForm instance using the data in request.POST
+  form = FeedingForm(request.POST)
+  # validate the form
+  if form.is_valid():
+    # don't save the form to the db until it
+    # has the capybara_id assigned
+    new_feeding = form.save(commit=False)
+    new_feeding.capybara_id = capybara_id
+    new_feeding.save()
+  return redirect('detail', capybara_id=capybara_id)
 
